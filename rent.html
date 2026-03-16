@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DriveNow Car Rental</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">DriveNow</div>
+
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#cars">Cars</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<button class="login-btn" onclick="openModal()">Login / Signup</button>
+
+</header>
+
+
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>Find Your Perfect Rental Car</h1>
+
+<p>Affordable luxury cars for your journey</p>
+
+<div class="search-box">
+
+<input type="text" placeholder="Pick-up Location">
+
+<input type="date">
+
+<select>
+<option>Car Type</option>
+<option>SUV</option>
+<option>Sedan</option>
+<option>Luxury</option>
+</select>
+
+<button>Search</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="cars" id="cars">
+
+<h2>Popular Cars</h2>
+
+<div class="car-container">
+
+<div class="car-card">
+<img src="https://images.unsplash.com/photo-1542362567-b07e54358753">
+<h3>BMW 3 Series</h3>
+<p>₹8000/day</p>
+<button>Book Now</button>
+</div>
+
+<div class="car-card">
+<img src="https://images.unsplash.com/photo-1502877338535-766e1452684a">
+<h3>Hyundai Creta</h3>
+<p>₹3000/day</p>
+<button>Book Now</button>
+</div>
+
+<div class="car-card">
+<img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8">
+<h3>Toyota Fortuner</h3>
+<p>₹4500/day</p>
+<button>Book Now</button>
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="services" id="services">
+
+<h2>Our Services</h2>
+
+<div class="service-container">
+
+<div class="service-card">
+<h3>Airport Pickup</h3>
+<p>Comfortable rides from airport</p>
+</div>
+
+<div class="service-card">
+<h3>Corporate Rental</h3>
+<p>Perfect for business travel</p>
+</div>
+
+<div class="service-card">
+<h3>Long Term Rental</h3>
+<p>Affordable monthly plans</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="about" id="about">
+
+<h2>About Us</h2>
+
+<p>
+DriveNow provides premium rental cars with affordable prices and excellent service.
+</p>
+
+</section>
+
+
+
+<footer id="contact">
+
+<div class="footer-container">
+
+<div>
+<h3>DriveNow</h3>
+<p>Best car rental service</p>
+</div>
+
+<div>
+<h4>Quick Links</h4>
+<p>Home</p>
+<p>Cars</p>
+<p>Services</p>
+</div>
+
+<div>
+<h4>Contact</h4>
+<p>Email: support@drivenow.com</p>
+<p>Phone: +91 9876543210</p>
+</div>
+
+</div>
+
+<p class="copyright">© 2026 DriveNow</p>
+
+</footer>
+
+
+
+
+<div class="modal" id="authModal">
+
+<div class="modal-content">
+
+<span class="close-btn" onclick="closeModal()">&times;</span>
+
+<div class="auth-tabs">
+<button onclick="showLogin()">Login</button>
+<button onclick="showSignup()">Signup</button>
+</div>
+
+
+
+<div id="loginForm">
+
+<h2>Login</h2>
+
+<input type="email" placeholder="Email">
+<input type="password" placeholder="Password">
+
+<button class="auth-btn">Login</button>
+
+</div>
+
+
+
+<div id="signupForm" style="display:none;">
+
+<h2>Signup</h2>
+
+<input id="name" type="text" placeholder="Full Name">
+<input id="email" type="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button class="auth-btn" onclick="signup()">Signup</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+function openModal(){
+document.getElementById("authModal").style.display="flex";
+}
+
+function closeModal(){
+document.getElementById("authModal").style.display="none";
+}
+
+function showLogin(){
+document.getElementById("loginForm").style.display="block";
+document.getElementById("signupForm").style.display="none";
+}
+
+function showSignup(){
+document.getElementById("loginForm").style.display="none";
+document.getElementById("signupForm").style.display="block";
+}
+
+
+function signup(){
+
+var formData = new FormData();
+
+formData.append("name", document.getElementById("name").value);
+formData.append("email", document.getElementById("email").value);
+formData.append("password", document.getElementById("password").value);
+
+fetch("https://script.google.com/macros/s/AKfycby6lXq7yZrXX65oodDaZK-zI9glYI_5uQGHNIUzt7bKFb-Sxu6OuJ0ICyrxPyaKgqYG/exec", {
+
+method:"POST",
+body:formData
+
+})
+
+.then(response => response.text())
+.then(data => {
+
+alert("Signup Successful!");
+
+document.getElementById("name").value=""
+document.getElementById("email").value=""
+document.getElementById("password").value=""
+
+})
+.catch(error => {
+
+alert("Error sending data")
+
+})
+
+}
+
+</script>
+
+</body>
+</html>
